@@ -12,6 +12,7 @@ class RDDMultipleTextOutputFormat extends MultipleTextOutputFormat[Any, Any] {
 }
 
 /**
+ * 将输出文件按key输出
  * Created by liubing on 16-10-27.
  */
 object MultipleOutputFormat {
@@ -21,12 +22,11 @@ object MultipleOutputFormat {
 
 
     val sc = new SparkContext(sparkConf)
-    sc.parallelize(List(("liubing", 100), ("lb", 100),("liubing1", 100), ("lb1", 100))).partitionBy(new HashPartitioner(3))
+    sc.parallelize(List(("liubing", 100), ("lb", 100), ("liubing1", 100), ("lb1", 100))).partitionBy(new HashPartitioner(3))
       .saveAsHadoopFile(args(0), classOf[String], classOf[String], classOf[RDDMultipleTextOutputFormat])
 
     sc.stop()
   }
-
 
 
 }
