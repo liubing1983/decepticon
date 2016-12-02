@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/actormodel/actormodel.iml" filepath="$PROJECT_DIR$/actormodel/actormodel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/decepticon.iml" filepath="$PROJECT_DIR$/decepticon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/flink/flink.iml" filepath="$PROJECT_DIR$/flink/flink.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kafka/kafka.iml" filepath="$PROJECT_DIR$/kafka/kafka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/megatron/megatron.iml" filepath="$PROJECT_DIR$/megatron/megatron.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spark/spark.iml" filepath="$PROJECT_DIR$/spark/spark.iml" />
+    </modules>
+  </component>
+</project>
