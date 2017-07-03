@@ -12,7 +12,6 @@ import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer08
 import org.elasticsearch.action.index.IndexRequest
 import org.elasticsearch.client.Requests
 
-
 /**
  * Created by liubing on 16-9-28.
  */
@@ -45,8 +44,6 @@ object FlinkKafka2Es {
 
    // val kafkaproducer = new FlinkKafkaProducer08[String]("10.95.3.136:9092","output",KafkaStringSchema)
 
-
-
     // configure Elasticsearch
     val config: java.util.Map[String, String] = new java.util.HashMap[String, String]
     config.put("bulk.flush.max.actions", "1")
@@ -75,9 +72,9 @@ object FlinkKafka2Es {
       }
     }
 
-    val essink = new ElasticsearchSink(config, transports, elasticsearchSink) with SinkFunction[String] {}
+    val esSink = new ElasticsearchSink(config, transports, elasticsearchSink) with SinkFunction[String] {}
 
-    ds.addSink(essink)
+    ds.addSink(esSink)
 
     env.execute("Flink ElasticSearch2 Example")
 

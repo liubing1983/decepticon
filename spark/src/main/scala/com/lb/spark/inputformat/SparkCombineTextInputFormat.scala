@@ -36,12 +36,14 @@ object SparkCombineTextInputFormat {
     //hdfs://10.95.3.138:8020/user/tescomm/lb/inputformat
     val lines = sc.newAPIHadoopFile("hdfs://10.95.3.138:8020/user/tescomm/lb/inputformat", classOf[CombineTextInputFormat], classOf[LongWritable],  classOf[Text], conf)
 
+
     //val lines = sc.newAPIHadoopFile[LongWritable, Text, CombineTextInputFormat]("hdfs://10.95.3.138:8020/user/tescomm/lb/inputformat")
     println(s"${lines.count()}--111111111111111111-${lines.first()._2.asInstanceOf[String]}")
 
     val  asd = lines.collect()
 
     asd.foreach(println _)
+
   }
 
 }

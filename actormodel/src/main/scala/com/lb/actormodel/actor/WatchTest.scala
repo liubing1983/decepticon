@@ -2,7 +2,7 @@ package com.lb.actormodel.actor
 
 import akka.actor._
 
-class Child extends Actor {
+class LbChild extends Actor {
 
   override def preStart {
     println("start  child  actor ")
@@ -19,7 +19,7 @@ class Child extends Actor {
 
 }
 
-class Parent extends Actor {
+class LbParent extends Actor {
   val child = context.actorOf(Props[Child], name = "child")
   context.watch(child)
 
@@ -36,7 +36,7 @@ class Parent extends Actor {
 object WatchTest {
   def main(args: Array[String]): Unit = {
     val as = ActorSystem("start-test")
-    val p = as.actorOf(Props[Parent], name = "parent")
+    val p = as.actorOf(Props[LbParent], name = "parent")
 
     p ! CreateChild("liu bing")
     //p ! CreateChild("milan")

@@ -26,7 +26,7 @@ class HelloActor2(str : String = "str") extends Actor {
 }
 
 
-object TestActor {
+object HelloActor {
 
   def main(args: Array[String]) {
 
