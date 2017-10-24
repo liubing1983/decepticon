@@ -13,4 +13,12 @@ object DateUtils {
     def dateFormat: String = sdf.format(s)
   }
 
+  def main(args: Array[String]): Unit ={
+    val a = 1500002421000L
+
+    println(a.dateFormat)
+    println(a.dateFormat.substring(0, 10))
+    println(a.dateFormat.substring(11, 13))
+  }
+
 }

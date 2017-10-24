@@ -9,6 +9,7 @@ object BubbleSort {
   val  a = scala.collection.mutable.ListBuffer("3","6","2","7","9","1","8","4","5","0")
 
   def bubble1(): Unit ={
+    // 比较大小 两两交换位置
     for(i <- 0 until a.size ; j <- 0 until a.size -i -1){
         if(a(j) < a(j + 1)){
           val temp = a(j)

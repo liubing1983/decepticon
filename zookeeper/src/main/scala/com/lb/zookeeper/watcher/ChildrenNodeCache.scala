@@ -10,12 +10,12 @@ import org.apache.curator.framework.recipes.cache.PathChildrenCacheEvent._
   */
 object ChildrenNodeCache {
 
-  val client : CuratorFramework = ZkConnection().getZKConnection();
+  val client : CuratorFramework = ZkConnection("appstore-watcher", "180.76.139.166", 2181).getZKConnection();
 
   def main(args: Array[String]): Unit = {
     client.start()
 
-    val cache : PathChildrenCache = new PathChildrenCache(client, "/t", true)
+    val cache : PathChildrenCache = new PathChildrenCache(client, "/", true)
 
     cache.start();
 
@@ -31,6 +31,7 @@ object ChildrenNodeCache {
     })
 
     while (true){
+      println("123")
       Thread.sleep(10000)
     }
   }

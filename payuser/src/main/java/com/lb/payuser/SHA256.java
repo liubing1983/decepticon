@@ -12,15 +12,15 @@ public class SHA256 {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             md.update(t.getBytes("GBK"));
-          // for (byte b : md.digest()){
-           //    System.out.format("%02x", b);
-          // }
+            // for (byte b : md.digest()){
+            //    System.out.format("%02x", b);
+            // }
             s = bytes2Hex(md.digest()); // to HexString
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-return s;
+        return s;
     }
 
     public static String bytes2Hex(byte[] bts) {
@@ -36,8 +36,8 @@ return s;
         return des;
     }
 
-    public static void main(String[] args){
-        System.out.println(testSha256("123")+"----");
+    public static void main(String[] args) {
+        System.out.println(testSha256("123") + "----");
     }
 
 }

@@ -20,6 +20,14 @@ object WordCount {
     val sc = new SparkContext(conf)
     val line = sc.textFile(args(0))
     line.flatMap(_.split(" ")).map((_, 1)).reduceByKey(_ + _).saveAsTextFile(args(1))
+
+
+    val r1 = sc.parallelize(List(("a",  Array(1,2,3)), ("a", Array(1,2,3)), ("c", Array(3,4,5))))
+    r1.map{ line =>
+          for(i <-1 to 10) yield{
+            (line._1+ i, line._2)
+          }
+    }.flatMap(x => x).reduceByKey((x, y) => (x, y).zipped.map(_ + _)).map{case (k, v) => (k, v.mkString(","))}.collect().foreach(println _)
     sc.stop()
   }
 }

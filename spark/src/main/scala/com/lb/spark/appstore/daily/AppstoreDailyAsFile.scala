@@ -153,7 +153,8 @@ object AppstoreDailyAsFile {
         ((map_k, map_v.map(rdd_k.getOrElse(_, "")).mkString(",")), rdd_v)
       }
       // 将9条数据展开, 根据各自的key  合并数据
-    }.flatMap(line => line).map(line => (line._1._1, (line._1._2, line._2.toString()))).saveAsHadoopFile(output, classOf[String], classOf[String], classOf[RDDMultipleTextOutputFormat])
+    }.flatMap(line => line).map(line => (line._1._1, (line._1._2, line._2.toString())))
+      .saveAsHadoopFile(output, classOf[String], classOf[String], classOf[RDDMultipleTextOutputFormat])
 
     // 关闭服务
     sc.stop

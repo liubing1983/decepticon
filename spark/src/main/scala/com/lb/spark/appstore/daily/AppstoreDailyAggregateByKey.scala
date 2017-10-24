@@ -95,7 +95,7 @@ object AppstoreDailyAggregateByKey {
       */
     //val action_rdd = sc.textFile("/appstore/flume/action/" + input + "/*/*/*.log").flatMap { line =>
     val action_rdd = sqlContext.read.parquet("/user/cheil/parquet-512/action/")
-      .map(line => ((line.getAs[String]("referLogId"), line.getAs[String]("actionType")), line)).groupByKey(1).map { case ((k1, k2), actionLog) =>
+      .map(line => ((line.getAs[String]("referLogId"), line.getAs[Int]("actionType")), line)).groupByKey(1).map { case ((k1, k2), actionLog) =>
 
       // 10:点击数  11:点击独立用户数
       val a = if (AppStoreLogType.APP_LOG_TYPE_ACTION_TYPE_CLICK == actionLog.head.getAs[Int]("actionType")) {

@@ -6,7 +6,7 @@ import scala.collection.mutable.ListBuffer
   *  直接插入排序
   * Created by liub on 2017/1/19.
   */
-object StraightSort {
+object StraightSort extends App {
 
   val  a = ListBuffer("3","6","2","7","9","1","8","4","5","0")
 

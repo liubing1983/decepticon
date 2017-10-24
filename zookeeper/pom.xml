@@ -10,13 +10,23 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>zookeeper</artifactId>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <curator-version>3.2.1</curator-version>
+
+        <log4j-version>1.2.15</log4j-version>
+        <org.slf4j-version>1.6.1</org.slf4j-version>
+    </properties>
+
     <dependencies>
-    <!-- Jetty -->
-    <dependency>
-        <groupId>org.eclipse.jetty.aggregate</groupId>
-        <artifactId>jetty-all-server</artifactId>
-        <version>8.1.16.v20140903</version>
-    </dependency>
+        <!-- Jetty
+        <dependency>
+            <groupId>org.eclipse.jetty.aggregate</groupId>
+            <artifactId>jetty-all-server</artifactId>
+            <version>8.1.16.v20140903</version>
+        </dependency> -->
         <!-- zookeeper -->
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
@@ -26,16 +36,56 @@
         <dependency>
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-framework</artifactId>
-            <version>2.8.0</version>
+            <version>${curator-version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-recipes</artifactId>
-            <version>2.8.0</version>
+            <version>${curator-version}</version>
         </dependency>
         <!-- zookeeper end -->
 
     </dependencies>
 
+    <build>
+        <plugins>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.8</version>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.apache.zookeeper</groupId>
+                                    <artifactId>zookeeper</artifactId>
+                                    <version>3.4.5-cdh5.5.1</version>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.curator</groupId>
+                                    <artifactId>curator-framework</artifactId>
+                                    <version>${curator-version}</version>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.curator</groupId>
+                                    <artifactId>curator-recipes</artifactId>
+                                    <version>${curator-version}</version>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${project.build.directory}/classes/lib</outputDirectory>
+                            <!--<excludeTransitive>false</excludeTransitive>-->
+                            <stripVersion>true</stripVersion>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
