@@ -13,7 +13,7 @@ class Child extends Actor {
     println(s"$name  --- ${self.path}")
   }
 
-  def receive={
+  def receive = {
     case Name(name) => this.name = name
     case _ => println(s" $name   =====")
   }
@@ -32,32 +32,31 @@ class Parent extends Actor {
 }
 
 
-
 /**
- * Created by liubing on 16-10-9.
- */
+  * Created by liubing on 16-10-9.
+  */
 object StartTest {
 
-def main(args: Array[String]): Unit ={
-  val as = ActorSystem("start-test")
-  val p = as.actorOf(Props[Parent], name = "parent")
+  def main(args: Array[String]): Unit = {
+    val as = ActorSystem("start-test")
+    val p = as.actorOf(Props[Parent], name = "parent")
 
-  p ! CreateChild("liu bing")
-  //p ! CreateChild("milan")
-  Thread.sleep(1000)
+    p ! CreateChild("liu bing")
+    //p ! CreateChild("milan")
+    Thread.sleep(1000)
 
-  println("sending")
+    println("sending")
 
-  // 找到路径下的actor
-  val j = as.actorSelection("/user/parent/child")
-  j ! PoisonPill
-  println("j was killed")
+    // 找到路径下的actor
+    val j = as.actorSelection("/user/parent/child")
+    j ! PoisonPill
+    println("j was killed")
 
-  Thread.sleep(5000)
+    Thread.sleep(5000)
 
-  as.shutdown()
+    as.shutdown()
 
-}
+  }
 }
 
 

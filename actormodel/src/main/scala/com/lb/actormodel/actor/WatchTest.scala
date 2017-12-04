@@ -31,6 +31,7 @@ class LbParent extends Actor {
 }
 
 /**
+  * 函数入口
  * Created by liubing on 16-10-9.
  */
 object WatchTest {
