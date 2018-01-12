@@ -28,15 +28,15 @@ object AskTest {
 
     implicit  val timeout = Timeout(5 seconds)
     val s = aaa ? "lb"
-
+println(s)
     println(Await.result(s, timeout.duration).asInstanceOf[String])
     Thread.sleep(2000)
 
 
     val s2 = ask(aaa, "lb").mapTo[String]
-    println(s2.toString)
+    println(s2)
     Thread.sleep(2000)
-    as.shutdown()
+    //as.shutdown()
 
   }
 }

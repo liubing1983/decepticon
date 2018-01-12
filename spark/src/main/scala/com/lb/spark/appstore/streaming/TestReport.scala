@@ -1,10 +1,8 @@
 package com.lb.spark.appstore.streaming
 
 
-import org.apache.hadoop.conf.Configuration
-import org.apache.spark.{HashPartitioner, SparkConf}
+import org.apache.spark.{SparkConf}
 import org.apache.spark.streaming.{Seconds, StreamingContext}
-import org.apache.spark.streaming.StreamingContext._
 
 case class abc(i1: Int, i2: Int)
 
@@ -29,9 +27,9 @@ object TestReport {
     // 实时报表统计
     lines.map { line =>
       line.split(",", -1) match {
-        case Array(_,_,_) =>("report_ab", 1L)
-        case Array("1", _ ,_,_ ) =>("report_bc", 1L)
-        case _ =>("report_error", 1L)
+        case Array(_, _, _) => ("report_ab", 1L)
+        case Array("1", _, _, _) => ("report_bc", 1L)
+        case _ => ("report_error", 1L)
       }
     }.updateStateByKey[Long](updateFunc).print
 
@@ -44,6 +42,8 @@ object TestReport {
     ssc.awaitTerminationOrTimeout(1000 * 60 * 10)
   }
 
-  val updateFunc = (values: Seq[Long], state: Option[Long]) => { Some(values.sum.toLong+ state.getOrElse(0L)) }
+  val updateFunc = (values: Seq[Long], state: Option[Long]) => {
+    Some(values.sum.toLong + state.getOrElse(0L))
+  }
 
 }

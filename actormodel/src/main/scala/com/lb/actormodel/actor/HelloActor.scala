@@ -46,7 +46,7 @@ object HelloActor {
     helloActor2 ! "lb"
 
     // 关闭ActorSystem
-    system.shutdown()
+   // system.shutdown()
 
   }
 }

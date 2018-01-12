@@ -52,6 +52,6 @@ object WatchTest {
 
     Thread.sleep(5000)
 
-    as.shutdown()
+    //as.shutdown()
   }
 }

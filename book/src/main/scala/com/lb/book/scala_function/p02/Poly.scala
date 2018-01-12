@@ -50,24 +50,53 @@ class Poly {
       else if (f(ss(n))) n
       else loop(n + 1)
     }
+
     loop(0)
   }
 
   /**
     * p20 练习2.2  判断数组是否按照提供的比较函数排序
+    *
     * @param as
     * @param ordered
     * @tparam A
     * @return
     */
-  def isSorted[A](as: Array[A], ordered:(A, A)=> Boolean): Boolean={
-    def loop(m: Int, n: Int): Boolean ={
-      if(m >= as.length-1) true
-      else if(!ordered(as(m), as(n)))   false
-      else loop(n, n+1)
+  def isSorted[A](as: Array[A], ordered: (A, A) => Boolean): Boolean = {
+    def loop(m: Int, n: Int): Boolean = {
+      if (m >= as.length - 1) true
+      else if (!ordered(as(m), as(n))) false
+      else loop(n, n + 1)
     }
+
     loop(0, 1)
   }
+
+  /**
+    * 2.6 通过类型来实现多态
+    *
+    * @param a
+    * @param f
+    * @tparam A
+    * @tparam B
+    * @tparam C
+    * @return
+    */
+  def partiall[A, B, C](a: A, f: (A, B) => C): B => C = {
+    (b: B) => f(a: A, b: B)
+  }
+
+  def curry[A, B, C](f: (A, B) => C): A => (B => C) = {
+    (a: A) => (b: B) => f(a, b)
+  }
+
+  def uncutty[A, B, C](f: A => B => C): (A, B) => C = {
+    (a, b) => f(a)(b)
+  }
+
+//  def compose[A, B, C](f: B => C, g: A => B): A => C = {
+//    (a: A) => f(g)
+//  }
 }
 
 object Poly extends App {
@@ -77,7 +106,7 @@ object Poly extends App {
   def f1[Int](i: Int): Boolean = {
     i == 4
   }
-
+List(1,2,3,4)
   println(p.findFirst(Array("1", "2", "3", "4", "5"), "2"))
   println(p.findFirstPoly[Int](Array(1, 2, 3, 4, 5), 2))
   // 使用匿名函数传递
@@ -85,5 +114,5 @@ object Poly extends App {
   // 使用函数传递
   println(p.findFirstPoly2Hof[Int](Array(1, 2, 3, 4, 5), f1))
 
-  println(p.isSorted[Int](Array(1, 5, 3, 7), (m: Int, n: Int) => m< n))
+  println(p.isSorted[Int](Array(1, 5, 3, 7), (m: Int, n: Int) => m < n))
 }
