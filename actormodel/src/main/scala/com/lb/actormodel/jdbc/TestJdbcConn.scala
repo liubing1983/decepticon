@@ -20,8 +20,6 @@ case class OracleConn() extends JdbcConn
 
 class TestJdbcConn extends Actor with ActorLogging {
 
-
-
   override def receive: Receive = {
     case MysqlConn2(conn, i) => {
 
@@ -33,10 +31,9 @@ class TestJdbcConn extends Actor with ActorLogging {
       while (result.next()) {
         println(result.getInt(1) + "--" + i)
       }
-context.stop(self)
+      println("==-=-=-=-=-=-=-=")
     }
   }
-
 }
 
 object TestJdbcConn extends App {
@@ -46,16 +43,14 @@ object TestJdbcConn extends App {
   val connInfo = new ConnectionInfo
   val conn = connInfo.getConn
 
-
   (0 to 100) map { x =>
     sysRef ! MysqlConn2(conn, x)
   }
 
-  (0 to 1) map { x =>
+  (0 to 5) map { x =>
     connInfo.getStatus()
     Thread.sleep(1000 * 1)
   }
   println("12313123131313123")
-  system.wait()
-  println(system.terminate())
+  println(system.terminate()+"--------------")
 }

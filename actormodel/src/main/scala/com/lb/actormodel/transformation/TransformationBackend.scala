@@ -22,6 +22,7 @@ class TransformationBackend extends Actor {
   // subscribe to cluster changes, MemberUp
   // re-subscribe when restart
   override def preStart(): Unit = cluster.subscribe(self, classOf[MemberUp])
+
   override def postStop(): Unit = cluster.unsubscribe(self)
 
   def receive = {
@@ -36,13 +37,15 @@ class TransformationBackend extends Actor {
       context.actorSelection(RootActorPath(member.address) / "user" / "frontend") !
         BackendRegistration
 }
+
 //#backend
 
 object TransformationBackend {
   def main(args: Array[String]): Unit = {
     // Override the configuration of the port when specified as program argument
     val port = if (args.isEmpty) "0" else args(0)
-    val config = ConfigFactory.parseString(s"""
+    val config = ConfigFactory.parseString(
+      s"""
         akka.remote.netty.tcp.port=$port
         akka.remote.artery.canonical.port=$port
         """)
