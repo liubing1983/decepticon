@@ -90,7 +90,6 @@ object StartActor {
   }
 }
 
-
 object PingPangActor extends App {
   StartActor.create
   StartActor.getRef ! StartSystemMessage()

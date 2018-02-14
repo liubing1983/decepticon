@@ -2,6 +2,8 @@ package com.lb.megator.io
 
 import java.io.File
 
+import scala.collection.mutable
+
 
 /**
   * 说明: 
@@ -9,8 +11,15 @@ import java.io.File
   */
 object Directory {
 
+  val hset  = mutable.HashSet("eml","msg","pst")
+
+  hset.contains("eml")
+
   def main(args: Array[String]): Unit = {
-    dir("e://")
+    println(hset.contains("eml"))
+    println(hset.contains("emL".toLowerCase))
+
+    dir("e://workspace")
   }
 
   def dir(path: String): Unit = {
@@ -20,7 +29,7 @@ object Directory {
       // println(x.getPath)
       // x.getPath.split("\\.", -1).foreach(println)
       // 处理目录
-      case x if (x.isDirectory) => println(s"目录:  ${x.getPath}")
+      case x if (x.isDirectory) => println(s"目录:  ${x.getPath}"); dir(x.getPath)
       case _ => println(s"其他")
     }
   }
