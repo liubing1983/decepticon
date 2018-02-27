@@ -86,11 +86,19 @@ object StartActor {
   def getRef = ref
 
   def shutdown = {
+
     sys.terminate()
   }
 }
 
 object PingPangActor extends App {
-  StartActor.create
-  StartActor.getRef ! StartSystemMessage()
+
+  var a = "aaa"
+  for(i <- 1 to 25){
+    a = a+ s"$i - $a"
+  }
+  println("ok-------------")
+
+ // StartActor.create
+ // StartActor.getRef ! StartSystemMessage()
 }

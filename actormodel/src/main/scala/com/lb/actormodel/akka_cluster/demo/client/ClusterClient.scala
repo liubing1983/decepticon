@@ -7,7 +7,6 @@ import akka.util.Timeout
 import com.lb.actormodel.akka_cluster.demo.{TransformationJob, TransformationResult}
 import com.typesafe.config.ConfigFactory
 
-import scala.actors.threadpool.AtomicInteger
 import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.io.StdIn
@@ -57,7 +56,6 @@ object DemoClient {
     val system = ActorSystem("liub222", ConfigFactory.load("client.conf"))
     val ref = system.actorOf(Props[ClusterClientLiub], name = "clientJobTransformationSendingActor")
 
-    val counter = new AtomicInteger
     import system.dispatcher
     for (i <- 1 to 100) {
       ref ! Send(i)

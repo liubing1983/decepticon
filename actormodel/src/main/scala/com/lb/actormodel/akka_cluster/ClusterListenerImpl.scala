@@ -18,10 +18,12 @@ object ClusterListenerImpl {
         akka.remote.artery.canonical.port=2551
         """)
       .withFallback(ConfigFactory.parseString("akka.cluster.roles = [frontend]"))
+      //.withFallback(ConfigFactory.parseString("akka.cluster.use-dispatcher = cluster-dispatcher"))
       .withFallback(ConfigFactory.load("cluster.conf"))
+    // akka.cluster.use-dispatcher = cluster-dispatcher
 
     val as = ActorSystem("liub", config = config)
-    asRef = as.actorOf(Props[ClusterListener], "321")
+    asRef = as.actorOf(Props[ClusterListener].withDispatcher("cluster-dispatcher"), "321")
   }
 
   def getRef: ActorRef = {
