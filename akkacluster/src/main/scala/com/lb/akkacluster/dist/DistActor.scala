@@ -32,7 +32,7 @@ class DistActor  extends Actor {
     }
     case i : Int => {
       println(s"=====================:$i")
-      c ! ClusterClient.Send("/user/server", TransformationJob(i.toString), localAffinity = true)
+      c ! ClusterClient.Send("/user/server", TransformationJob(i.toString , self), localAffinity = true)
     }
   }
 }
