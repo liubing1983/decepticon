@@ -29,14 +29,19 @@ class StartActor extends Actor with ActorLogging {
   override def receive: Receive = {
     case Job => count.add(1) // 发送一个任务计数器加一
       workRef ! Job
+      try {
+        1 / 0
+      }
     case Stop =>println(count.sum().toString+"-------------");
-      println("-----============================--------");
+      println(s"任务完成后计数器减一  -----============================--------");
       count.decrement() // 任务完成后计数器减一
     case "count" =>
-      println(count.sum().toString)
+      println("当前剩余任务-"+count.sum().toString)
       if (count.sum() <= 0) { // 判断任务是否全部完成
         //StartActor.b = false
         //StartActor.lb()
+
+        context.system.terminate()
       }
   }
 }

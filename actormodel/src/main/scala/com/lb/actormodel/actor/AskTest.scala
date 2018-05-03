@@ -12,6 +12,7 @@ import scala.language.postfixOps
 class TestActor extends Actor {
   def receive = {
     case "lb" => sender ! "return123"
+
     case _ => sender ! "other"
   }
 }
@@ -31,6 +32,7 @@ object AskTest {
     println(s + "111")
     println(Await.result(s, timeout.duration).asInstanceOf[String] + "222")
     Thread.sleep(2000)
+
 
 
     val s2 = ask(aaa, "lb").mapTo[String]

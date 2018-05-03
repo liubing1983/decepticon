@@ -1,6 +1,6 @@
 package com.lb.actormodel.actor
 
-import akka.actor.{Props, Actor, ActorSystem}
+import akka.actor.{Actor, ActorLogging, ActorSystem, Props}
 
 
 /**
@@ -16,11 +16,11 @@ class HelloActor() extends Actor {
   }
 }
 
-class HelloActor2(str : String = "str") extends Actor {
+class HelloActor2(str : String = "str") extends Actor  with  ActorLogging{
 
   // 实现receive，　来执行ａｃｔｏｒ的动作
   def receive = {
-    case "lb" => println(s"hello lb $str")
+    case "lb" => log.info(s"hello lb $str")
     case s => println(s)
   }
 }
