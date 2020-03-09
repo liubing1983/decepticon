@@ -23,7 +23,7 @@ class PingActor extends Actor {
     case StartMessage(ref: ActorRef) =>println("ping 发球"); ref ! PingPangMessage(Random.nextInt(30))
     case PingPangMessage(i) if (i == Random.nextInt(30)) =>  context.actorSelection("/user/systemstart") ! StopMessage("ping")
     case PingPangMessage(i) => sender ! PingPangMessage(i)
-    //case _ => println("error  ping")
+    // case _ => println("error  ping")
   }
 
   override def unhandled(message: Any): Unit = {
@@ -92,13 +92,6 @@ object StartActor {
 }
 
 object PingPangActor extends App {
-
-  var a = "aaa"
-  for(i <- 1 to 25){
-    a = a+ s"$i - $a"
-  }
-  println("ok-------------")
-
- // StartActor.create
- // StartActor.getRef ! StartSystemMessage()
+  StartActor.create
+  StartActor.getRef ! StartSystemMessage()
 }

@@ -34,7 +34,11 @@ object HelloActorFuture extends App {
 
   // 执行一个异步actor, 会通过隐式转换调用timeout
   val future = Future {
-    asRef ? User("haha", 20)
+    val a = asRef ? User("haha", 20)
+    println("======")
+    Thread.sleep(500)
+    println(a)
+    a
   }
 
   // 等待future在规定的时间内返回
@@ -47,6 +51,6 @@ object HelloActorFuture extends App {
 
   println("12312312312312312")
 
-  //as.terminate()
+  as.terminate()
 
 }

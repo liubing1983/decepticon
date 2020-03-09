@@ -18,7 +18,7 @@ class ClientActor2 extends Actor {
   override def postStop(): Unit = cluster.unsubscribe(self)
 
   def receive = {
-    case TransformationJob(text) => { // 接收任务请求
+    case TransformationJob(text, ref) => { // 接收任务请求
       println(s"client2-${text}")
       val result = text.toUpperCase // 任务执行得到结果（将字符串转换为大写）
       sender() ! TransformationResult(text.toUpperCase) // 向发送者返回结果

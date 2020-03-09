@@ -17,25 +17,16 @@
             <artifactId>avro</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>com.cheil.pengtai.appstore</groupId>
-            <artifactId>appstore-console</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.cheil.pengtai.appstore</groupId>
-            <artifactId>appstore-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-assembly_2.10</artifactId>
-            <version>1.5.0-cdh5.5.0</version>
+            <version>1.1.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-streaming_2.10</artifactId>
-            <version>1.5.0-cdh5.5.0</version>
+            <version>1.6.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.spark</groupId>
@@ -46,33 +37,33 @@
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-core_2.10</artifactId>
-            <version>1.5.0-cdh5.5.0</version>
+            <version>1.6.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-sql_2.10</artifactId>
-            <version>1.5.0-cdh5.5.0</version>
+            <version>1.6.0</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-common</artifactId>
-            <version>2.6.0-cdh5.5.0</version>
+            <version>2.6.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-mapreduce-client-jobclient</artifactId>
-            <version>2.6.0-cdh5.5.0</version>
+            <version>2.6.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-mapreduce-client-core</artifactId>
-            <version>2.6.0-cdh5.5.0</version>
+            <version>2.6.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-client</artifactId>
-            <version>2.6.0-cdh5.5.0</version>
+            <version>2.6.0</version>
         </dependency>
 
 

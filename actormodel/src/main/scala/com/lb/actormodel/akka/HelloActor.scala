@@ -33,6 +33,6 @@ object HelloActor extends App {
   asRef ! "a"
   asRef ! "123"
 
-  //as.terminate()
+  as.terminate()
 
 }

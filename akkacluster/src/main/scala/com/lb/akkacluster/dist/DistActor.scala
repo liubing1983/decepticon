@@ -1,13 +1,13 @@
 package com.lb.akkacluster.dist
 
+import java.util.concurrent.atomic.AtomicInteger
+
 import akka.actor.{Actor, ActorPath, ActorSystem, Props, RootActorPath}
 import akka.cluster.Member
 import akka.cluster.client.{ClusterClient, ClusterClientSettings}
 import com.lb.akkacluster.{BackendRegistration, End, TransformationJob, TransformationResult}
 import com.typesafe.config.ConfigFactory
 
-import scala.actors.threadpool.AtomicInteger
-import scala.io.StdIn
 import scala.concurrent.duration._
 
 /**

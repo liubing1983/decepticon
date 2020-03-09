@@ -6,6 +6,8 @@ import akka.cluster.ClusterEvent.{CurrentClusterState, MemberEvent, MemberUp}
 import com.lb.akkacluster.{BackendRegistration, TransformationJob, TransformationResult}
 import com.typesafe.config.ConfigFactory
 
+
+
 /**
   * 说明: 
   * Created by LiuBing on 2018/2/12.
@@ -18,7 +20,7 @@ class ClientActor extends Actor {
   override def postStop(): Unit = cluster.unsubscribe(self)
 
   def receive = {
-    case TransformationJob(text) => { // 接收任务请求
+    case TransformationJob(text, ref) => { // 接收任务请求
       println(s"client-${text}")
       val result = text.toUpperCase // 任务执行得到结果（将字符串转换为大写）
       sender() ! TransformationResult(text.toUpperCase) // 向发送者返回结果

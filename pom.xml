@@ -23,7 +23,7 @@
         <module>akkacluster</module>
     </modules>
 
-    <repositories>
+    <!--<repositories>
         <repository>
             <id>nexus</id>
             <name>nexus</name>
@@ -35,15 +35,30 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
-    </repositories>
+    </repositories>-->
 
+
+    <repositories>
+    <repository>
+        <id>puhuifinance</id>
+        <name>Maven of Puhuifinance.com</name>
+        <url>http://inside.puhuifinance.com/nexus/content/groups/public/</url>
+        <releases>
+            <enabled>true</enabled>
+        </releases>
+        <snapshots>
+            <enabled>true</enabled>
+        </snapshots>
+        <layout>default</layout>
+    </repository>
+    </repositories>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java-version>1.8</java-version>
         <log4j-version>1.2.15</log4j-version>
         <org.slf4j-version>1.6.1</org.slf4j-version>
-        <scala.version>2.11.12</scala.version>
+        <scala.version>2.10.4</scala.version>
     </properties>
     <dependencies>
         <!--  start log-->

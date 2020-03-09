@@ -46,7 +46,7 @@ class ClientActor extends Actor {
 
   override def receive: Receive = {
     case s: String =>
-      println("-----------------");
+      println("-----------------")
       for(i <- 0 to 90000){
         c ! ClusterClient.Send("/user/eventListener", TransformationJob(s+i.toString, self), false)
         count.add(1)

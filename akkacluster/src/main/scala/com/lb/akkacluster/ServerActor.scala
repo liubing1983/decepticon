@@ -18,8 +18,7 @@ class ServerActor extends Actor with  ActorLogging{
   val cluster = Cluster(context.system)
   var count = new LongAdder
   override def preStart(): Unit = {
-    cluster.subscribe(self,initialStateMode = InitialStateAsEvents
-      ,classOf[MemberEvent],classOf[UnreachableMember])  //订阅集群状态转换信息
+    cluster.subscribe(self,initialStateMode = InitialStateAsEvents,classOf[MemberEvent],classOf[UnreachableMember])  //订阅集群状态转换信息
     super.preStart()
   }
 

@@ -15,8 +15,8 @@ import scala.concurrent.duration._
 class HelloActorRouter extends Actor with  ActorLogging{
 
   override def receive: Receive = {
-    case s => println(s"s====${s}")
-      Thread.sleep(1000 * 4)
+    case s => log.info(s"s====${s}")
+      //Thread.sleep(1000 * 4)
       sender() ! context.system.name
   }
 
@@ -36,4 +36,6 @@ object  HelloActorRouter extends  App{
        case a => println(a.toString)
      }
   }
+
+  system.terminate()
 }
